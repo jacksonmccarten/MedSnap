@@ -25,7 +25,7 @@ api_key = 'tfp_3ZcbVwoTezAB5RmojBdFySu3NSd5jTtFPbAFyLEgu4MP_3sqab6KCypM3zo'
 form_id = 'Q7SYhh8n'
 
 client = openai.OpenAI()
-prompt_template = "You are a doctor. Inquire about the patient's **current symptoms** by asking open-ended questions like, How have you been feeling lately? or Can you describe any symptoms or concerns you have right now? If needed, ask follow-up questions to gather more specific details about the symptoms, such as duration, intensity, or any recent changes. After gathering the necessary information, thank the patient for their time and reassure them that the details will be forwarded to the doctor. Make all of your response short: 1-3 sentences."
+prompt_template = "You are a doctor. Inquire about the patient's current symptoms by asking open-ended questions like, How have you been feeling lately? or Can you describe any symptoms or concerns you have right now? If needed, ask follow-up questions to gather more specific details about the symptoms, such as duration, intensity, or any recent changes. After gathering the necessary information, thank the patient for their time and reassure them that the details will be forwarded to the doctor. Most Importantly: Make all of your responses short: max 1-3 sentences."
 
 def user_exists(username):
     with open("users/users.json", "r") as file:
