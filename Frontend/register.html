@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedSnap - Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for specific styling of the registration page */
+
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .cont-btn {
+            position: absolute;
+            top: 645px;
+            background-color: #2253e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* Remove underline from links */
+            display: inline-block; /* Make the link behave like a button */
+            text-align: center; /* Center text inside the link */
+            right: 680px;
+        }
+
+        .cont-btn:hover {
+            background-color: #1d46c2;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        header img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 100px; /* Adjust the height as needed */
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 35px;
+            background-color: #2253e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* Remove underline from links */
+            display: inline-block; /* Make the link behave like a button */
+            text-align: center; /* Center text inside the link */
+            right: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #1d46c2;
+        }
+
+    </style>
+    <link rel="icon" type="image/x-icon" href="assets/logo_black.ico">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="MedSnap Logo">
+        <h1>MedSnap Registration</h1>
+        <a href="home.html" class="logout-btn">Back</a>
+    </header>
+        <!-- Typeform Embed -->
+        <div data-tf-live="01J7SQ3CDZXDCPKF4FP625A3CS"></div>
+        <script src="//embed.typeform.com/next/embed.js"></script>
+
+        <a href="home.html" class="cont-btn">Return to Login</a>
+
+        <script>
+            // This function is called when the form is submitted
+            function submit({ formId, responseId }) {
+                console.log("form submitted");
+              console.log(`Form ${formId} submitted, response id: ${responseId}`);
+      
+            //   // Send a POST request to the backend
+            //   fetch('http://10.191.5.245:5000/registration/', {
+            //     method: 'POST',
+            //     headers: {
+            //       'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //       formId: formId,
+            //       responseId: responseId
+            //     })
+            //   })
+            //   .then(response => {
+            //     if (response.ok) {
+            //       console.log('Form submission successfully reported to the backend.');
+            //     } else {
+            //       console.log('Error reporting form submission to the backend.');
+            //     }
+            //   })
+            //   .catch(error => {
+            //     console.error('Error:', error);
+            //   });
+            }
+          </script>
+        <!-- http://10.191.5.245:5000/registration/ -->
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MedSnap. All rights reserved.</p>
+    </footer>
+</body>
+</html>

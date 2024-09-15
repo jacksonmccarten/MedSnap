@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedSnap - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for specific styling of the login page */
+
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+            text-align: center;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .login-container input[type="username"],
+        .login-container input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        header img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 100px; /* Adjust the height as needed */
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 35px;
+            background-color: #2253e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* Remove underline from links */
+            display: inline-block; /* Make the link behave like a button */
+            text-align: center; /* Center text inside the link */
+            right: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #1d46c2;
+        }
+
+    </style>
+    <link rel="icon" type="image/x-icon" href="assets/logo_black.ico">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="MedSnap Logo">
+        <h1>MedSnap Login</h1>
+        <a href="home.html" class="logout-btn">Back</a>
+    </header>
+
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="email">Username:</label>
+            <input type="username" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MedSnap. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const url = 'http://10.191.5.245:5000/sign_in/' + username + '/' + password
+            fetch(url)
+            .then(response => {
+                return response.json()    
+            })
+            .then(data => {
+                console.log("hahahaha", data[0]);
+                if (data[0] == 'SUCCESS') {
+                    sessionStorage.setItem('username', username)
+                    window.location.href = 'index.html';
+                } else {
+                    // Handle login failure (you might want to notify the user)
+                    alert('Login failed. Please check your email and password.');
+                }
+            });
+        });
+            
+    </script>
+</body>
+</html>

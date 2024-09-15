@@ -1,0 +1,88 @@
+/* styles.css */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container Style */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Style */
+header {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Description Section */
+.description {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.description h2 {
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.description p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* Button Styles */
+.buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.buttons a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 15px 25px;
+    border-radius: 5px;
+    margin: 0 10px;
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.buttons a:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.buttons a:active {
+    background-color: #004080;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .buttons a {
+        display: block;
+        width: calc(100% - 40px);
+        margin: 10px auto;
+    }
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chatbot</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="css/chat.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <style type="text/css">
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #2253e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-btn:hover {
+            background-color: #1d46c2;
+        }
+
+        .profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 130px;
+            background-color: #2253e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .profile-btn:hover {
+            background-color: #1d46c2;
+        }
+
+        .fixed-panel {
+            min-height: 190px;
+            max-height: 190px;
+            background-color: #f1efef;
+            color: white;
+            overflow: auto;
+        }
+        .media-list {
+            overflow: auto;
+            clear: both;
+            display: table;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: normal;
+            line-break: strict;
+        }
+        .panel {
+            margin-bottom: 20px;
+            min-width: 750px;
+            translate: -200px;
+            background-color: #fff;
+            border: 6px solid transparent;
+            border-radius: 20px;
+            -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+        .panel-info {
+            border-color: #2253e5;
+        }
+        .panel-info>.panel-heading {
+            color: white;
+            background-color: #2253e5;
+            border-color: #2253e5;
+        }
+        .panel-footer {
+            padding: 10px 15px;
+            background-color: #2253e5;
+            border-top: 1px solid #2253e5;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 80px; /* Adjust the height as needed */
+        }
+
+        </style>
+        <link rel="icon" type="image/x-icon" href="assets/logo_black.ico">
+    </head>
+    <body>
+        <header style="font-family:Arial, sans-serif;font-size:2em;">
+            <img src="assets/logo.png" alt="MedSnap Logo">
+            <h1>MedSnap Chatbot</h1>
+            <button class="logout-btn">Log Out</button>
+            <button class="profile-btn">Profile</button>
+        </header>
+
+        <div class="container">
+            <section id="about">
+                <h2>Welcome to MedSnap Chatbot</h2>
+                <p>Use our AI chatbot to discuss any medical concerns, so that our doctors can review your case and presribe you treatment.</p>
+            </section>
+        </div>
+        <div class="container background-color: rgb(255,0,255);">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div id="chatPanel" class="panel panel-info">
+                        <div class="panel-heading">
+                            <strong>MedSnap Chatbot</strong>
+                        </div>
+                        <div class="panel-body fixed-panel">
+                            <ul class="media-list">
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <form method="post" id="chatbot-form">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter Message" name="messageText" id="messageText" autofocus/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button" id="chatbot-form-btn">Send</button>
+                                        <button class="btn btn-info" type="button" id="chatbot-form-btn-clear">New</button>
+                                        <button class="btn btn-info" type="button" id="chatbot-form-btn-voice">Voice</button>
+                                        <!-- <button class="btn btn-danger" type="button" id="chatbot-form-btn-end">End Conversation</button> -->
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            var exports = {};
+        </script>
+        <script src="https://unpkg.com/speech-to-text@0.7.4/lib/index.js"></script>
+        <script>
+            $(function() {
+        var synth = window.speechSynthesis;
+
+        var msg = new SpeechSynthesisUtterance();
+        var voices = synth.getVoices();
+        msg.voice = voices[0];
+        msg.rate = 1;
+        msg.pitch = 1;
+
+        console.log(sessionStorage.getItem('username'));
+        const url1 = 'http://10.191.5.245:5000/get_history/' + sessionStorage.getItem('username');
+        fetch(url1)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const length = Object.keys(data[0]).length;
+            sessionStorage.setItem('index',length);
+            console.log(length);
+        })
+
+
+        $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style="color : black" class="media-body">' + 'What do you need help with?' + '<hr/></div></div></div></li>');
+
+        $('#chatbot-form-btn').click(function(e) {
+            e.preventDefault();
+            $('#chatbot-form').submit();
+        });
+        $('#chatbot-form-btn-clear').click(function(e) {
+            e.preventDefault();
+            $('#chatPanel').find('.media-list').html('');
+        });
+        $('#chatbot-form-btn-voice').click(function(e) {
+            e.preventDefault();
+
+            var onAnythingSaid = function (text) {
+                console.log('Interim text: ', text);
+            };
+            var onFinalised = function (text) {
+                console.log('Finalised text: ', text);
+                $('#messageText').val(text);
+            };
+            var onFinishedListening = function () {
+                // $('#chatbot-form-btn').click();
+            };
+
+            try {
+                var listener = new SpeechToText(onAnythingSaid, onFinalised, onFinishedListening);
+                listener.startListening();
+
+                setTimeout(function () {
+                    listener.stopListening();
+                    if ($('#messageText').val()) {
+                        $('#chatbot-form-btn').click();
+                    }
+                }, 5000);
+            } catch (error) {
+                console.log(error);
+            }
+        });
+
+        $('#chatbot-form').submit(function(e) {
+            e.preventDefault();
+            var message = $('#messageText').val();
+            $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style="text-align:right; color : #2e7b34" class="media-body">' + message + '<hr/></div></div></div></li>');
+            $('#messageText').val('');
+
+            
+
+            const url2 = 'http://10.191.5.245:5000/one_on_one/' + sessionStorage.getItem('username') + '/' + sessionStorage.getItem('index') + '/' + message;
+            fetch(url2)
+            .then(response => {
+                // Check if the response is ok (status code 200-299)
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    // Parse the response as JSON
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the data from the fetch call
+                    console.log('Data from fetch:', data[0]);
+                    var answer = data[0];
+                    msg.text = answer;
+
+                    speechSynthesis.speak(msg);
+                    const chatPanel = document.getElementById("chatPanel");
+                    $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style="color : black" class="media-body">' + answer + '<hr/></div></div></div></li>');
+                    $(".fixed-panel").stop().animate({ scrollTop: $(".fixed-panel")[0].scrollHeight}, 1000);
+                })
+                
+        });
+        // Log Out button functionality
+        $('.logout-btn').click(function() {
+                window.location.href = 'home.html';
+            });
+        $('.profile-btn').click(function() {
+                window.location.href = 'profile.html';
+            });
+    });
+        </script>
+        <footer>
+            <p>&copy; 2024 MedSnap. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

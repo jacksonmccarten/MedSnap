@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedSnap - Home</title>
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative; /* Ensure header has relative positioning */
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .description {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            display: inline-block;
+            cursor: pointer; /* Change cursor to pointer */
+        }
+        .buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        header img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 70px; /* Adjust the height as needed */
+        }
+
+    </style>
+    <link rel="icon" type="image/x-icon" href="assets/logo_black.ico">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="MedSnap Logo">
+        <h1>Welcome to MedSnap</h1>
+    </header>
+
+    <div class="container">
+        <div class="description">
+            <h2>About MedSnap</h2>
+            <p>MedSnap is your go-to platform for quick and effective medical analysis. Our application provides an AI chatbot to summarize our patient's data allowing doctors to quickly and effectively review individual cases and prescribe treatment.</p>
+        </div>
+
+        <div class="image-container">
+            <img src="assets/homescreen.png" alt="Homescreen Banner">
+        </div>
+
+        <div class="buttons">
+            <a href="#" onclick="navigateToLogin()">Login</a> 
+            <a href="register.html">Register</a>
+        </div>
+    </div>
+    <script>
+        function navigateToLogin() {
+            url = 'http://10.191.5.245:5000/sign_up/'
+            fetch(url)
+            
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

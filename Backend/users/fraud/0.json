@@ -1,0 +1,16 @@
+{
+    "2024-09-14 17:43:53 705": "i feel sick",
+    "2024-09-14 17:43:54 263": "Hi there! I need to gather some information for the doctor. Can you please tell me your first and last name?",
+    "2024-09-14 17:43:55 926": "ian yee",
+    "2024-09-14 17:43:56 395": "Thank you, Ian Yee. Can you please tell me your age and gender?",
+    "2024-09-14 17:43:59 753": "male 21",
+    "2024-09-14 17:44:00 661": "Thank you, Ian Yee. Can you please tell me about the symptoms you are experiencing?",
+    "2024-09-14 17:44:07 747": "a fever and a cough",
+    "2024-09-14 17:44:08 570": "Thank you for providing the information. Here is the compiled data for the doctor:\n\n- **Name:** Ian Yee\n- **Age:** 21\n- **Gender:** Male\n- **Symptoms:** Fever and a cough\n\nIs there anything else you would like to add or any other symptoms you are experiencing?",
+    "2024-09-14 17:44:45 586": "that is all",
+    "2024-09-14 17:44:46 621": "Thank you for providing the information. Here is the compiled data for the doctor:\n\n- **Name:** Ian Yee\n- **Age:** 21\n- **Gender:** Male\n- **Symptoms:** Fever and a cough\n\nIs there anything else you would like to add or any other symptoms you are experiencing?\n\n(If you need anything else, feel free to let me know!)",
+    "2024-09-14 17:44:49 464": "ok",
+    "2024-09-14 17:44:49 985": "Hi Ian, I need to gather some information for the doctor. Can you please tell me your first and last name?",
+    "2024-09-14 17:45:00 619": "Ian yee",
+    "2024-09-14 17:45:01 101": "Hello Ian Yee, thank you for providing your name. Can you please tell me your age and gender?"
+}

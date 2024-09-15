@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for specific styling of the registration page */
+        .logout-btn,
+        .chatbot-btn {
+            position: absolute;
+            top: 35px;
+            background-color: #2253e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            text-decoration: none; /* Remove underline from links */
+            display: inline-block; /* Make the link behave like a button */
+            text-align: center; /* Center text inside the link */
+        }
+
+        .logout-btn {
+            right: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #1d46c2;
+        }
+
+        .chatbot-btn {
+            right: 130px;
+        }
+
+        .chatbot-btn:hover {
+            background-color: #1d46c2;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Ensure that absolute positioning works for child elements */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* Ensure that button is positioned relative to this container */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        header img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 100px; /* Adjust the height as needed */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .view-history-btn {
+            display: block;
+            width: 100%;
+            max-width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none; /* Remove underline from link */
+        }
+
+        .update-profile-btn {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none; /* Remove underline from link */
+        }
+
+        .view-history-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .update-profile-btn {
+            background-color: #28a745;
+        }
+
+        .update-profile-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="assets/logo_black.ico">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="MedSnap Logo">
+        <h1>Update Profile</h1>
+        <a href="home.html" class="logout-btn">Logout</a>
+        <a href="index.html" class="chatbot-btn">Chatbot</a>
+    </header>
+    <div class="container">
+        <h2>Profile Information</h2>
+        <form id="profileForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="first name">First Name:</label>
+                <input type="text" id="first name" name="first name" value="John"> <!-- Default value for example -->
+            </div>
+            <div class="form-group">
+                <label for="last name">Last Name:</label>
+                <input type="text" id="last name" name="last name" value="Doe"> <!-- Default value for example -->
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age" value="30">
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="johnny">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password" value="password">
+            </div>
+            <div class="form-group">
+                <label for="allergies">Allergies:</label>
+                <input type="text" id="allergies" name="allergies" value="None">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" value="Male">
+            </div>
+            <div class="form-group">
+                <label for="medications">Medications:</label>
+                <input type="text" id="medications" name="medications">
+            </div>
+            <button class="update-profile-btn" type="submit">Update Profile</button>
+        </form>
+        
+        <script>
+            function handleFormSubmit(event) {
+                // Prevent the form from submitting the traditional way
+                event.preventDefault();
+        
+                // Capture the form data
+                const formData = {
+                    first_name: document.getElementById('first name').value,
+                    last_name: document.getElementById('last name').value,
+                    gender: document.getElementById('gender').value,
+                    medications: document.getElementById('medications').value,
+                    username: document.getElementById('username').value,
+                    allergies: document.getElementById('allergies').value,
+                    password: document.getElementById('password').value,
+                    age: document.getElementById('age').value
+                };
+        
+                console.log('Form Data:', formData);
+                console.log(JSON.stringify(formData));
+        
+                fetch('http://10.191.5.245:5000/edit_user/' + username["value"] + '/' + JSON.stringify(formData))
+                .then((response) => {
+                    console.log(formData);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        
+                alert('Profile updated successfully!');
+            }
+        </script>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 MedSnap. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Define the URL to fetch profile data from
+        const url = 'http://10.191.5.245:5000/get_profile/';
+
+        // Fetch the profile data from the server
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Update the form fields with the fetched data
+                document.getElementById('name').value = data[0] || '';
+                document.getElementById('password').value = data[2] || '';
+                document.getElementById('sex').value = data[3] || '';
+                // Optional: Update additional fields if required
+                document.getElementById('age').value = data[1] || '';
+                document.getElementById('medications').value = data[4] || '';
+            })
+            .catch(error => console.error('Error fetching profile data:', error));
+    </script>
+</body>
+</html>
